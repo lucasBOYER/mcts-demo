@@ -61,10 +61,12 @@ class MCTS:
         root: Vertex,
         c: float = 2,
         random_state: np.random.RandomState = None,
+        two_players: bool = True,
     ):
         self.root = root
         self.c = c
         self.random_state = random_state or np.random.RandomState()
+        self.two_players = two_players
 
     def compute_uct(self, child, parent_N) -> float:
         if child.n == 0:
@@ -80,14 +82,21 @@ class MCTS:
         return cur_node, path
 
     def backpropagate(self, path, reward) -> None:
-        for v in path:
-            # The sign of the reward of a node must be flipped when the player
-            # that took the action leading to this node is not the root player
-            # i.e. when parent(node.state.turn) != root.state.turn
-            # which is equivalent to  node.state.turn == root.state.turn
-            sign = -1 if v.state.turn == self.root.state.turn else 1
-            v.w += sign * reward
-            v.n += 1
+        # I prefer to evaluate the two_players property once and duplicate some code
+        # rather than evaluate it len(path) times
+        if self.two_players:
+            for v in path:
+                # The sign of the reward of a node must be flipped when the player
+                # that took the action leading to this node is not the root player
+                # i.e. when parent(node.state.turn) != root.state.turn
+                # which is equivalent to  node.state.turn == root.state.turn
+                sign = -1 if v.state.turn == self.root.state.turn else 1
+                v.w += sign * reward
+                v.n += 1
+        else:
+            for v in path:
+                v.w += reward
+                v.n += 1
 
     def select_child(self, parent) -> Vertex:
         children = parent.children

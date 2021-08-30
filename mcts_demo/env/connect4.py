@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.signal import convolve2d
 
-from base import BaseEnv
+from .base import BaseEnv
 
 HORIZONTAL_KERNEL = np.array([[1, 1, 1, 1]])
 VERTICAL_KERNEL = np.transpose(HORIZONTAL_KERNEL)
