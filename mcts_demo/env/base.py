@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-class BaseEnv(ABC):
+class BaseEnv(ABC):  # pragma: no cover
     @abstractmethod
     def reset(self):
         pass

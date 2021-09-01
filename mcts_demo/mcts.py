@@ -104,7 +104,7 @@ class MCTS:
         return children[np.argmax(ucts)]
 
     def search(self, n=50):
-        for i in range(n):
+        for _ in range(n):
             # selection
             leaf, path = self.selection()
             if not leaf.is_terminal():
