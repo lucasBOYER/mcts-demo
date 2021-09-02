@@ -2,7 +2,7 @@
 A basic implementation of the Monte Carlo Tree Search algorithm, with concrete illustrations based on some toy examples. Made for educational purposes.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/lucasBOYER/mcts-demo/main/img/pendulum.gif" width="300" height="300" alt="MCTS-agent playing Pendulum"/>
+    <img src="https://raw.githubusercontent.com/lucasBOYER/mcts-demo/main/img/pendulum.gif" width="300" height="300" alt="MCTS-agent playing Pendulum"></br>
     <em>MCTS-agent playing Pendulum-v0</em>
 </p>
 
