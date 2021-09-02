@@ -1,18 +1,18 @@
 from __future__ import annotations
 import numpy as np
 from gym.envs.classic_control import PendulumEnv
-
+from typing import Tuple, Any
 from .base import BaseEnv
 
 
 class DiscretePendulum(PendulumEnv, BaseEnv):
     def __init__(
         self,
-        g=10,
-        cur_step=0,
-        max_step=50,
-        torque_grid: list = None,
+        g: float = 10,
+        cur_step: int = 0,
+        max_step: int = 50,
         n_actions: int = 7,
+        torque_grid: list = None,
     ):
         super().__init__(g=g)
         self.cur_step = cur_step
@@ -51,7 +51,7 @@ class DiscretePendulum(PendulumEnv, BaseEnv):
     def get_legal_moves(self) -> list:
         return self.torque_grid
 
-    def step_inplace(self, move):
+    def step_inplace(self, move: float) -> Tuple[np.ndarray, Any, bool, dict]:
         if not isinstance(move, list):
             move = [move]
         obs, reward, done, info = super().step(move)
@@ -59,11 +59,10 @@ class DiscretePendulum(PendulumEnv, BaseEnv):
         self.value = reward
         return obs, reward, done, info
 
-    def step(self, move):
+    def step(self, move: float) -> DiscretePendulum:
         if not isinstance(move, list):
             move = [move]
         next_state = self.copy()
-        next_state.cur_step += 1
         _, reward, _, _ = next_state.step_inplace(move)
         next_state.value = reward
         return next_state

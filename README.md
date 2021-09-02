@@ -1,6 +1,11 @@
 # mcts-demo
 A basic implementation of the Monte Carlo Tree Search algorithm, with concrete illustrations based on some toy examples. Made for educational purposes.
 
+<p align="center">
+    <img src="https://github.com/lucasBOYER/mcts-demo/img/pendulum.gif" width="300" height="300" alt="MCTS-agent playing Pendulum"/>
+    <em>MCTS-agent playing Pendulum-v0</em>
+</p>
+
 # Installation
 ## With docker
 While being at the root of the project, build the image with the following command :
